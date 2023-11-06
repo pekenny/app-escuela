@@ -1,5 +1,9 @@
 <script setup>
     import { RouterLink } from 'vue-router'
+    import { useUserStore } from '../stores/user';
+
+    const userStore = useUserStore();
+    
 </script>
 <template>
     <div>
@@ -10,7 +14,7 @@
                 <router-link to="Asignaturas" class="nav-link">Asignaturas</router-link>
                 <router-link to="Licencias" class="nav-link">Licencias</router-link>
                 <router-link to="Usuarios" class="nav-link">Usuarios</router-link>
-                <router-link to="/secciones/usuarios/" class="nav-link">Cerrar Sesion</router-link>
+                <router-link to="/login" class="nav-link" @click="userStore.login = false">Cerrar Sesion</router-link>
             </ul>
         </nav>
     </div>
