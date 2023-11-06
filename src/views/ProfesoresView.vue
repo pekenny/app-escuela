@@ -1,12 +1,16 @@
 <script setup>
+import { ref } from 'vue';
+import AgregarUsuario from '../components/AgregarUsuario.vue';
 
+const userView  = ref(false);
+const title = ref('Profesor');
 </script>
 <template>
     <div>
         <h1>Profesores</h1>
         <div class="card">
             <div class="card-header">
-                <a name="" id="" class="btn btn-primary" href="crear.php" role="button">
+                <a name="" id="" class="btn btn-primary" role="button" @click="userView = !userView">
                     Agregar Profesor
                 </a>
             </div>
@@ -50,6 +54,9 @@
 
             </div>
         </div>
+
+        <!-- Componente Usuario -->
+        <AgregarUsuario v-if="userView" :title="title"/>
     </div>
 </template>
 

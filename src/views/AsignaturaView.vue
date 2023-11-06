@@ -1,13 +1,17 @@
 <script setup>
+ import { ref } from 'vue';
+ import AgregarAsignatura from '../components/AgregarAsignatura.vue';
 
+ const asignView  = ref(false);
+ const title = ref('Asignatura');
 </script>
 <template>
     <div>
         <h1>Asignatura</h1>
         <div class="card">
             <div class="card-header">
-                <a name="" id="" class="btn btn-primary" href="crear.php" role="button">
-                    Agregar registro
+                <a name="" id="" class="btn btn-primary" role="button" @click="asignView = !asignView">
+                    Agregar Asignatura
                 </a>
             </div>
             <div class="card-body">
@@ -33,6 +37,8 @@
             </div>
 
         </div>
+        <!-- componente asignatura -->
+        <AgregarAsignatura v-if="asignView" :title="title"/>
     </div>
 </template>
 

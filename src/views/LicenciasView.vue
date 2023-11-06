@@ -7,7 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <a name="" id="" class="btn btn-primary" href="crear.php" role="button">
-                    Agregar Usuario
+                    Agregar Licencia
                 </a>
             </div>
             <div class="card-body">
