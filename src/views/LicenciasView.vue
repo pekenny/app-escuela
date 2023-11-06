@@ -1,12 +1,16 @@
 <script setup>
+    import { ref } from 'vue';
+    import AgregarLicencia from '../components/AgregarLicencia.vue';
 
+    const licView  = ref(false);
+    const title = ref('Licencia');
 </script>
 <template>
     <div>
         <h1>Licencias</h1>
         <div class="card">
             <div class="card-header">
-                <a name="" id="" class="btn btn-primary" href="crear.php" role="button">
+                <a name="" id="" class="btn btn-primary" role="button" @click="licView = !licView">
                     Agregar Licencia
                 </a>
             </div>
@@ -18,17 +22,20 @@
                             <tr>
                                 <th scope="col">Id </th>
                                 <th scope="col">Nombre del Usuario </th>
-                                <th scope="col">Contraseña </th>
-                                <th scope="col">Correo </th>
-                                <th scope="col">Acciones </th>
+                                <th scope="col">Fecha Inicio </th>
+                                <th scope="col">Fecha Fin </th>
+                                <th scope="col">id profesor </th>
+                                <th scope="col">id tipo licencia </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="">
                                 <td scope="row">1</td>
                                 <td>JFJ</td>
-                                <td>******</td>
-                                <td>juanfjimenes@gmail.com</td>
+                                <td>12/12/2019</td>
+                                <td>12/12/2019</td>
+                                <td>1</td>
+                                <td>1</td>
                                 <td>
                                     <input name="btneditar" id="btneditar" class="btn btn-info" type="button"
                                         value="Editar">
@@ -36,12 +43,7 @@
                                     <input name="btnborrar" id="btnborrar" class="btn btn-danger" type="button"
                                         value="Eliminar">
                                 </td>
-                            </tr>
-                            <tr class="">
-                                <td scope="row">Item</td>
-                                <td>Item</td>
-                                <td>Item</td>
-                            </tr>
+                            </tr>                          
                         </tbody>
                     </table>
                 </div>
@@ -49,6 +51,7 @@
             </div>
 
         </div>
+        <AgregarLicencia v-if="licView" :title="title"></agregarLicencia>
     </div>
 </template>
 
