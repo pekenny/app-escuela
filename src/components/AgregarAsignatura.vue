@@ -41,7 +41,7 @@ defineProps({
 
                     
 
-                    <button type="submit" class="btn btn-success">Agregar </button>
+                    <button type="submit" class="btn btn-success" style="margin: 1em;">Agregar </button>
                     <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
                 </form>
             </div>

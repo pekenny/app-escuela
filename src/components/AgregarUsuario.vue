@@ -24,29 +24,18 @@ defineProps({
                     </div>
 
                     <div class="mb-3">
-                        <label for="telefono" class="form-label">Telefono</label>
-                        <input type="text" class="form-control" name="telefono" id="telefono" aria-describedby="helpId"
-                            placeholder="Escriba su Telefono">
-
+                        <label for="contrasena" class="form-label">Contraseña: </label>
+                        <input type="text" class="form-control" name="contrasena" id="contrasena"
+                            aria-describedby="helpId" placeholder="Contraseña">
                     </div>
                     <div class="mb-3">
-                        <label for="foto" class="form-label">Foto</label>
-                        <input type="file" class="form-control" name="foto" id="foto" aria-describedby="helpId" placeholder="Escriba su Telefono">
-                    </div>
-                    <div class="mb-3">
-                        <label for="cv" class="form-label">CV</label>
-                        <input type="file" class="form-control" name="cv" id="cv" aria-describedby="helpId" placeholder="Escriba su Telefono">
-                    </div>
-                    <div class="mb-3">
-                        <label for="asignatura" class="form-label">Asignatura</label>
-                        <input type="text" class="form-control" name="asignatura" id="asignatura" aria-describedby="helpId" placeholder="Escriba su Telefono">
-                    </div>
-                    <div class="mb-3">
-                        <label for="fecha" class="form-label">Fecha de Ingreso</label>
-                        <input type="date" class="form-control" name="fecha" id="fecha" aria-describedby="helpId" placeholder="Escriba su Telefono">
+                        <label for="Correo" class="form-label">Correo: </label>
+                        <input type="email" class="form-control" name="Correo" id="Correo" aria-describedby="helpId"
+                            placeholder="Correo">
+                    
                     </div>
 
-                    <button type="submit" class="btn btn-success">Agregar </button>
+                    <button type="submit" class="btn btn-success" style="margin: 1em;">Agregar </button>
                     <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
                 </form>
             </div>

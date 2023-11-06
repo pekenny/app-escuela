@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import AgregarUsuario from '../components/AgregarUsuario.vue';
+import AgregarUsuario from '../components/AgregarProfesor.vue';
 
 const userView  = ref(false);
 const title = ref('Profesor');
