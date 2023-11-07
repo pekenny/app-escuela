@@ -1,9 +1,14 @@
 <script setup>
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
 import AgregarUsuario from '../components/AgregarProfesor.vue';
+import { useProfesoresStore } from '../stores/profesores';
 
 const userView  = ref(false);
 const title = ref('Profesor');
+
+const userStore = useProfesoresStore();
+
+
 </script>
 <template>
     <div>
@@ -30,13 +35,13 @@ const title = ref('Profesor');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="">
-                                <td scope="row">Juan Jimenez</td>
-                                <td>2644510368</td>
-                                <td>imagen.jpg</td>
-                                <td>CV.pdf</td>
+                            <tr class="" v-for="item in userStore.profesores" :key="item.id">
+                                <td scope="row">{{ item.nombreyapellido }}</td>
+                                <td>{{ item.telefono }}</td>
+                                <td>{{ item.foto }}</td>
+                                <td>{{ item.cv }}</td>
                                 <td>Programacion I</td>
-                                <td>12/12/2019</td>
+                                <td>{{ item.fechadeingreso }}</td>
                                 <td>
                                     <input name="btnfojadeservicio" id="btnfojadeservicio" class="btn btn-primary"
                                         type="button" value="Foja de Servicio">
