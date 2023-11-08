@@ -1,9 +1,9 @@
-import { reactive, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { defineStore } from "pinia";
 import axios from "axios";
 
 export const useProfesoresStore = defineStore("profesores", () => {
-  const profesores = reactive([]);
+  const profesores = ref([]);
   const profesor = reactive({
     nombreyapellido: "",
     dni: "",
@@ -12,91 +12,62 @@ export const useProfesoresStore = defineStore("profesores", () => {
     email: "",
     foto: {},
     cv: {},
-    asignatura: "",
     fechadeingreso: "",
     fechadebaja: "",
   });
 
   onMounted(async () => {
-    const request = await fetch(
-      "http://localhost/abm-scool/public/profesores/profesores"
-    );
+    const request = await fetch("http://localhost:3000/api/profesores");
     const data = await request.json();
-    profesores.push(...data);
+    profesores.value.push(...data);
   });
 
   const addProfesor = async () => {
     // peticion post con axios a API
-    const request = await axios.post(
-      "http://localhost/abm-scool/public/profesores/profesores",
-      profesor,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        responseType: "json",
-        withCredentials: false,
-      }
-    );
+    try {
+      const request = await axios.post(
+        "http://localhost:3000/api/profesores",
+        profesor,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          responseType: "json",
+          withCredentials: false,
+        }
+      );
 
-    const response = request.data;
-    profesores.push(response);
+      if (request.status !== 200) {
+        throw new Error(`Error al agregar profesor: ${request.status}`);
+      }
+
+      const response = request.data;
+      profesores.value.push(response);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  //   const uploadFoto = async () => {
-  //     const file = profesor.foto[0];
-  //     const formData = new FormData();
-  //     formData.append("file", file);
+  const eliminarProfesor = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/api/profesores/${id}`
+      );
+      console.log(response.data);
 
-  //     try {
-  //       const response = await fetch("/assets/upload", {
-  //         method: "POST",
-  //         body: formData,
-  //       });
+      const index = profesores.value.findIndex((profesor) => profesor.id === id);
+      profesores.value.splice(index, 1);
+    } catch (error) {
+      console.error(error);
+      // Mostrar mensaje de error al usuario
+    }
+  };
 
-  //       if (response.ok) {
-  //         console.log("Archivo 1 subido exitosamente");
-  //         // Realizar cualquier otra acción después de la subida exitosa
-  //       } else {
-  //         console.error("Error al subir el archivo 1");
-  //         // Realizar acciones en caso de error
-  //       }
-  //     } catch (error) {
-  //       console.error("Error en la solicitud de subida de archivo 1", error);
-  //       // Realizar acciones en caso de error
-  //     }
-  //   };
-
-  //   const uploadCV = async (event) => {
-  //     const file = profesor.cv[0];
-  //     const formData = new FormData();
-  //     formData.append("file", file);
-
-  //     try {
-  //       const response = await fetch("/assets/upload", {
-  //         method: "POST",
-  //         body: formData,
-  //       });
-
-  //       if (response.ok) {
-  //         console.log("Archivo 2 subido exitosamente");
-  //         // Realizar cualquier otra acción después de la subida exitosa
-  //       } else {
-  //         console.error("Error al subir el archivo 2");
-  //         // Realizar acciones en caso de error
-  //       }
-  //     } catch (error) {
-  //       console.error("Error en la solicitud de subida de archivo 2", error);
-  //       // Realizar acciones en caso de error
-  //     }
-  //   };
-
-
+  
   return {
     profesor,
     profesores,
-    // uploadFoto,
-    // uploadCV,
     addProfesor,
+    eliminarProfesor,
   };
 });

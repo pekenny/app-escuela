@@ -1,0 +1,100 @@
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useProfesoresStore } from '../stores/profesores';
+import $ from 'jquery';
+import 'datatables.net-bs5';
+import 'datatables.net-bs5/css/dataTables.bootstrap5.css';
+import 'datatables.net-buttons-bs5';
+import 'datatables.net-buttons/js/buttons.print.mjs';
+import jszip from 'jszip';
+import pdfmake from 'pdfmake';
+import 'datatables.net-autofill-bs5';
+import 'datatables.net-buttons-bs5';
+import 'datatables.net-buttons/js/buttons.colVis.mjs';
+import 'datatables.net-buttons/js/buttons.html5.mjs';
+
+// let dt;
+// const table = ref();
+const props = defineProps({
+    title: {
+        type: String,
+        required: true
+    },
+    columns: {
+        type: Array,
+        required: true
+    },
+    profesores: {
+        type: Array,
+        required: true
+    }
+})
+const profesorStore = useProfesoresStore();
+
+// DataTable.use(DataTablesCore);
+// onMounted(function () {
+//     dt = table.value.dt;
+// });
+onMounted(() => {
+   
+    $('#' + props.title + '').DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+      ],
+      language: {
+        url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'
+      },
+      paging: true,
+  
+
+      
+    }).draw();
+})
+</script>
+<template>
+    <div>
+        <!-- <DataTable class="table table-hover table-striped" width="100%" :data="profesores" :columns="columns" ref="table">
+                    </DataTable> -->
+        <table :id="title" class="table table-hover table-striped" width="100%">
+            <thead>
+                <tr>
+                    <th v-for="column in columns" :key="column">{{ column.data }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="profesor in profesores" :key="profesor">
+                    <td>{{ profesor.nombreyapellido }}</td>
+                    <td>{{ profesor.dni }}</td>
+                    <td>{{ profesor.domicilio }}</td>
+                    <td>{{ profesor.telefono }}</td>
+                    <td>{{ profesor.email }}</td>
+                    <td>{{ profesor.foto }}</td>
+                    <td>{{ profesor.cv }}</td>
+                    <td>{{ profesor.fechadeingreso }}</td>
+                    <td>{{ profesor.fechadebaja }}</td>
+                    <td class="d-flex">`<button class="btn btn-success btn-sm" @click="$event => profesorStore.editar(profesor.id)"><i
+                                class="fas fa-edit"></i></button> <button class="btn btn-danger btn-sm" style="margin: auto 2px;"
+                            @click="$event => profesorStore.eliminarProfesor(profesor.id)"><i
+                                class="fas fa-trash-alt"></i></button>``</td>
+                   
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</template>
+
+
+<style scoped>
+table {
+    text-align: center;
+    font-size: small;
+}
+
+thead {
+    font-variant-caps: all-petite-caps;
+}
+
+
+</style>

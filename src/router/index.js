@@ -1,5 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import ProfesoresView from "../views/ProfesoresView.vue";
+import AsignaturaView from "../views/AsignaturaView.vue";
+import LicenciasView from "../views/LicenciasView.vue";
+import UsuariosView from "../views/UsuariosView.vue";
+import LoginView from "../views/LoginView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,22 +18,22 @@ const router = createRouter({
     {
       path: "/profesores",
       name: "profesores",
-      component: () => import("../views/ProfesoresView.vue"),
+      component: ProfesoresView,
     },
     {
       path: "/asignaturas",
       name: "asignaturas",
-      component: () => import("../views/AsignaturaView.vue"),
+      component: AsignaturaView,
     },
     {
       path: "/licencias",
       name: "licencias",
-      component: () => import("../views/LicenciasView.vue"),
+      component: LicenciasView,
     },
     {
       path: "/usuarios",
       name: "usuarios",
-      component: () => import("../views/UsuariosView.vue"),
+      component: UsuariosView,
     },
     {
       path: "/login",
