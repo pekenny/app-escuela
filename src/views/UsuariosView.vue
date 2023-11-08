@@ -1,6 +1,13 @@
 <script setup>
 import { ref } from 'vue';
 import AgregarUsuario from '../components/AgregarUsuario.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+// validar que exista data en localStorage
+if (!localStorage.getItem('data')) {
+    router.push('/login');
+}
 
 const userView  = ref(false);
 const title = ref('Usuario');

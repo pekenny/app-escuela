@@ -14,7 +14,7 @@
                 <router-link to="Asignaturas" class="nav-link">Asignaturas</router-link>
                 <router-link to="Licencias" class="nav-link">Licencias</router-link>
                 <router-link to="Usuarios" class="nav-link">Usuarios</router-link>
-                <router-link to="/login" class="nav-link" @click="userStore.login = false">Cerrar Sesion</router-link>
+                <router-link to="/login" class="nav-link" @click="$event => userStore.logout()">Cerrar Sesion</router-link>
             </ul>
         </nav>
     </div>

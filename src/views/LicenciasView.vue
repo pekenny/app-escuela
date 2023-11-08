@@ -1,9 +1,16 @@
 <script setup>
-    import { ref } from 'vue';
-    import AgregarLicencia from '../components/AgregarLicencia.vue';
+import { ref } from 'vue';
+import AgregarLicencia from '../components/AgregarLicencia.vue';
+import { useRouter } from 'vue-router';
 
-    const licView  = ref(false);
-    const title = ref('Licencia');
+const router = useRouter();
+// validar que exista data en localStorage
+if (!localStorage.getItem('data')) {
+    router.push('/login');
+}
+
+const licView = ref(false);
+const title = ref('Licencia');
 </script>
 <template>
     <div>
@@ -43,7 +50,7 @@
                                     <input name="btnborrar" id="btnborrar" class="btn btn-danger" type="button"
                                         value="Eliminar">
                                 </td>
-                            </tr>                          
+                            </tr>
                         </tbody>
                     </table>
                 </div>

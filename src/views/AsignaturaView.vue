@@ -1,9 +1,16 @@
 <script setup>
- import { ref } from 'vue';
- import AgregarAsignatura from '../components/AgregarAsignatura.vue';
+import { ref } from 'vue';
+import AgregarAsignatura from '../components/AgregarAsignatura.vue';
+import { useRouter } from 'vue-router';
 
- const asignView  = ref(false);
- const title = ref('Asignatura');
+const router = useRouter();
+// validar que exista data en localStorage
+if (!localStorage.getItem('data')) {
+    router.push('/login');
+}
+
+const asignView = ref(false);
+const title = ref('Asignatura');
 </script>
 <template>
     <div>
@@ -38,7 +45,7 @@
 
         </div>
         <!-- componente asignatura -->
-        <AgregarAsignatura v-if="asignView" :title="title"/>
+        <AgregarAsignatura v-if="asignView" :title="title" />
     </div>
 </template>
 
