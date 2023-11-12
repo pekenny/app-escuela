@@ -1,9 +1,10 @@
 <script setup>
 import { ref, watch } from 'vue';
-import AgregarUsuario from '../components/AgregarProfesor.vue';
+import AgregarProfesor from '../components/profesor/AgregarProfesor.vue';
 import { useProfesoresStore } from '../stores/profesores';
-import { useRouter } from 'vue-router';
+import { useRouter, RouterLink, RouterView } from 'vue-router';
 import DataTable from '../components/DataTable.vue';
+import Modal from '../components/profesor/Modal.vue';
 
 const userView = ref(false);
 const title = ref('Profesor');
@@ -16,9 +17,9 @@ const columns = [
     { data: 'foto', title: 'Foto' },
     { data: 'cv', title: 'CV' },
     { data: 'fechadeingreso', title: 'Fecha de Ingreso' },
-    { data: 'fechadebaja', title: 'Fecha de Baja' }, 
+    { data: 'fechadebaja', title: 'Fecha de Baja' },
     {
-       data: 'Acciones'
+        data: 'Acciones'
     }
 ]
 
@@ -32,9 +33,9 @@ if (!localStorage.getItem('data')) {
 const profesorStore = useProfesoresStore();
 
 
-const updateProfesores = (data) => {
-    profesorStore.profesores.value = { ...data };
-}
+// const updateProfesores = (data) => {
+//     profesorStore.profesores.value = { ...data };
+// }
 
 
 </script>
@@ -47,18 +48,20 @@ const updateProfesores = (data) => {
         </div>
         <div class="card">
             <div class="card-header">
-                <a name="" id="" class="btn btn-primary" role="button" @click="userView = !userView">
-                    <span class="badge text-bg-primary">Agregar Profesor</span>
-                </a>
+               
+                <router-link class="btn btn-primary m-1" to="/agregarProfesor" @click="userView = !userView">Agregar Profesor</router-link>
+                <RouterLink class="btn btn-primary m-1" to="/asistenciasProfesor" @click="userView = !userView">Asistencia</RouterLink>
+             
             </div>
             <div class="card-body" v-if="!userView">
-                <DataTable :columns="columns" :profesores="profesorStore.profesores" :title="title"/>
-
+                <DataTable :columns="columns" :profesores="profesorStore.profesores" :title="title" />
+                <Modal :title="title" v-for="profesor in profesorStore.profesores" :key="profesor.id"
+                    :profesor="profesor" />
             </div>
         </div>
 
-        <!-- Componente Usuario -->
-        <AgregarUsuario v-if="userView" :title="title" />
+       
+        <RouterView v-if="userView"></RouterView>
     </div>
 </template>
 

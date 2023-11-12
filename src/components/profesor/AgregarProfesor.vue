@@ -1,5 +1,5 @@
 <script setup>
-import { useProfesoresStore } from '../stores/profesores';
+import { useProfesoresStore } from '../../stores/profesores';
 
 defineProps({
     title: {

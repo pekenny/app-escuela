@@ -36,26 +36,26 @@ const profesorStore = useProfesoresStore();
 //     dt = table.value.dt;
 // });
 onMounted(() => {
-   
-    $('#' + props.title + '').DataTable({
-      dom: 'Bfrtip',
-      buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
-      ],
-      language: {
-        url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'
-      },
-      paging: true,
-  
 
-      
+    $('#' + props.title + '').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'
+        },
+        paging: true,
+
+
+
     }).draw();
 })
 </script>
 <template>
     <div>
         <!-- <DataTable class="table table-hover table-striped" width="100%" :data="profesores" :columns="columns" ref="table">
-                    </DataTable> -->
+                            </DataTable> -->
         <table :id="title" class="table table-hover table-striped" width="100%">
             <thead>
                 <tr>
@@ -73,11 +73,14 @@ onMounted(() => {
                     <td>{{ profesor.cv }}</td>
                     <td>{{ profesor.fechadeingreso }}</td>
                     <td>{{ profesor.fechadebaja }}</td>
-                    <td class="d-flex">`<button class="btn btn-success btn-sm" @click="$event => profesorStore.editar(profesor.id)"><i
-                                class="fas fa-edit"></i></button> <button class="btn btn-danger btn-sm" style="margin: auto 2px;"
+                    <td class="d-flex"><button class="btn btn-success btn-sm"
+                            data-bs-toggle="modal" :data-bs-target="'#' + profesor.id">
+                            <i class="fas fa-edit"></i></button>
+                        <button class="btn btn-danger btn-sm" style="margin: auto 2px;"
                             @click="$event => profesorStore.eliminarProfesor(profesor.id)"><i
-                                class="fas fa-trash-alt"></i></button>``</td>
-                   
+                                class="fas fa-trash-alt"></i></button>
+                    </td>
+
                 </tr>
             </tbody>
         </table>
@@ -95,6 +98,4 @@ table {
 thead {
     font-variant-caps: all-petite-caps;
 }
-
-
 </style>

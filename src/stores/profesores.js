@@ -1,6 +1,8 @@
 import { ref, reactive, onMounted } from "vue";
 import { defineStore } from "pinia";
 import axios from "axios";
+import swal from 'sweetalert';
+
 
 export const useProfesoresStore = defineStore("profesores", () => {
   const profesores = ref([]);
@@ -43,8 +45,10 @@ export const useProfesoresStore = defineStore("profesores", () => {
 
       const response = request.data;
       profesores.value.push(response);
+      swal("Registro agregado correctamente", "Presiona el botón!", "success");
     } catch (error) {
       console.error(error);
+      swal("Error al agregar el registro", "Presiona el botón!", "error");
     }
   };
 
@@ -55,7 +59,9 @@ export const useProfesoresStore = defineStore("profesores", () => {
       );
       console.log(response.data);
 
-      const index = profesores.value.findIndex((profesor) => profesor.id === id);
+      const index = profesores.value.findIndex(
+        (profesor) => profesor.id === id
+      );
       profesores.value.splice(index, 1);
     } catch (error) {
       console.error(error);
@@ -63,11 +69,26 @@ export const useProfesoresStore = defineStore("profesores", () => {
     }
   };
 
-  
+  const updateProfesor = async (data) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:3000/api/profesores/${data.id}`,
+        data
+      );
+      swal("Registro actualizado correctamente", "Presiona el botón!", "success")
+      console.log(response.data);
+    } catch (error) {
+      swal("Error al actualizar el registro", "Presiona el botón!", "error")
+      console.error(error);
+      // Mostrar mensaje de error al usuario
+    }
+  };
+
   return {
     profesor,
     profesores,
     addProfesor,
     eliminarProfesor,
+    updateProfesor
   };
 });

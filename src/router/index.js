@@ -19,6 +19,18 @@ const router = createRouter({
       path: "/profesores",
       name: "profesores",
       component: ProfesoresView,
+      children: [
+        {
+          path: "/agregarProfesor",
+          name: "agregarProfesor",
+          component: () => import("../components/profesor/AgregarProfesor.vue"),        
+        },
+        {
+          path: "/asistenciasProfesor",
+          name: "asistenciasProfesor",
+          component: () => import("../components/profesor/AsistenciasProfesor.vue"),
+        }
+      ]
     },
     {
       path: "/asignaturas",

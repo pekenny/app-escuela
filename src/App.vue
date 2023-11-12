@@ -22,4 +22,8 @@ const userStore = useUserStore();
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  * {
+    font-size: small;
+  }
+</style>
