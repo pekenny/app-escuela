@@ -15,7 +15,7 @@ const profesorStore = useProfesoresStore();
 <template>
     <div>
         <div class="card">
-            <div class="card-header">
+            <div class="card-header border">
                 <h5 class="card-title text-center">Formulario para agregar {{ title }}</h5>
             </div>
             <div class="card-body">
@@ -82,7 +82,5 @@ const profesorStore = useProfesoresStore();
 
 
 <style scoped>
-.card {
-    margin-top: 1em;
-}
+
 </style>

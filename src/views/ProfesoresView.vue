@@ -50,12 +50,12 @@ const profesorStore = useProfesoresStore();
             <div class="card-header">
                
                 <router-link class="btn btn-primary m-1" to="/agregarProfesor" @click="userView = !userView">Agregar Profesor</router-link>
-                <RouterLink class="btn btn-primary m-1" to="/asistenciasProfesor" @click="userView = !userView">Asistencia</RouterLink>
+                <!-- <RouterLink class="btn btn-primary m-1" to="/asistenciasProfesor" @click="userView = !userView">Asistencia</RouterLink> -->
              
             </div>
             <div class="card-body" v-if="!userView">
-                <DataTable :columns="columns" :profesores="profesorStore.profesores" :title="title" />
-                <Modal :title="title" v-for="profesor in profesorStore.profesores" :key="profesor.id"
+                <DataTable :columns="columns" :profesores="profesorStore.profComputed" :title="title" />
+                <Modal :title="title" v-for="profesor in profesorStore.profComputed" :key="profesor.id"
                     :profesor="profesor" />
             </div>
         </div>

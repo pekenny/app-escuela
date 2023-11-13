@@ -1,4 +1,4 @@
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, watch, computed } from "vue";
 import { defineStore } from "pinia";
 import axios from "axios";
 import swal from 'sweetalert';
@@ -18,11 +18,17 @@ export const useProfesoresStore = defineStore("profesores", () => {
     fechadebaja: "",
   });
 
-  onMounted(async () => {
+  const getProfesores = async () => {
     const request = await fetch("http://localhost:3000/api/profesores");
     const data = await request.json();
-    profesores.value.push(...data);
-  });
+    profesores.value = data;
+  }
+  // onMounted(async () => {
+  //   const request = await fetch("http://localhost:3000/api/profesores");
+  //   const data = await request.json();
+  //   profesores.value.push(...data);
+  // });
+  onMounted(getProfesores);
 
   const addProfesor = async () => {
     // peticion post con axios a API
@@ -44,7 +50,8 @@ export const useProfesoresStore = defineStore("profesores", () => {
       }
 
       const response = request.data;
-      profesores.value.push(response);
+      // profesores.value.push(response);
+      getProfesores();
       swal("Registro agregado correctamente", "Presiona el botón!", "success");
     } catch (error) {
       console.error(error);
@@ -84,9 +91,20 @@ export const useProfesoresStore = defineStore("profesores", () => {
     }
   };
 
+  const profComputed = computed(() => {
+    return profesores.value;
+  })
+
+   watch(profesores, () => {
+    getProfesores;  
+    console.log(profesores.value);
+  },{
+    immediate: true
+  })
+
   return {
     profesor,
-    profesores,
+    profComputed,
     addProfesor,
     eliminarProfesor,
     updateProfesor

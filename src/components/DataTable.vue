@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useProfesoresStore } from '../stores/profesores';
 import $ from 'jquery';
 import 'datatables.net-bs5';
@@ -25,16 +25,17 @@ const props = defineProps({
         required: true
     },
     profesores: {
-        type: Array,
-        required: true
+        type: Array
+
+    },
+    asistencias: {
+        type: Array
+
     }
 })
 const profesorStore = useProfesoresStore();
 
-// DataTable.use(DataTablesCore);
-// onMounted(function () {
-//     dt = table.value.dt;
-// });
+
 onMounted(() => {
 
     $('#' + props.title + '').DataTable({
@@ -51,11 +52,12 @@ onMounted(() => {
 
     }).draw();
 })
+
 </script>
 <template>
     <div>
         <!-- <DataTable class="table table-hover table-striped" width="100%" :data="profesores" :columns="columns" ref="table">
-                            </DataTable> -->
+                                </DataTable> -->
         <table :id="title" class="table table-hover table-striped" width="100%">
             <thead>
                 <tr>
@@ -63,7 +65,8 @@ onMounted(() => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="profesor in profesores" :key="profesor">
+                <!-- Profesores -->
+                <tr v-for="profesor in profesores" :key="profesor" v-if="title == 'Profesor'">
                     <td>{{ profesor.nombreyapellido }}</td>
                     <td>{{ profesor.dni }}</td>
                     <td>{{ profesor.domicilio }}</td>
@@ -73,14 +76,23 @@ onMounted(() => {
                     <td>{{ profesor.cv }}</td>
                     <td>{{ profesor.fechadeingreso }}</td>
                     <td>{{ profesor.fechadebaja }}</td>
-                    <td class="d-flex"><button class="btn btn-success btn-sm"
-                            data-bs-toggle="modal" :data-bs-target="'#' + profesor.id">
+                    <td class="d-flex"><button class="btn btn-success btn-sm" data-bs-toggle="modal"
+                            :data-bs-target="'#' + profesor.id">
                             <i class="fas fa-edit"></i></button>
                         <button class="btn btn-danger btn-sm" style="margin: auto 2px;"
                             @click="$event => profesorStore.eliminarProfesor(profesor.id)"><i
                                 class="fas fa-trash-alt"></i></button>
                     </td>
 
+                </tr>
+                <!-- Asistencias -->
+                <tr v-for="asistencia in asistencias" :key="asistencia" v-else-if="title == 'Asistencia'">
+                    <td>{{ asistencia.nombreyapellido }}</td>
+                    <td>{{ asistencia.fecha }}</td>
+                    <td
+                        :class="asistencia.estado == 'ausente' ? 'bg-danger p-2 text-white bg-opacity-75' :
+                         asistencia.estado == 'justificado' ? 'bg-warning p-2 text-white bg-opacity-75' : 'bg-success p-2 text-white bg-opacity-75'">
+                        {{ asistencia.estado }}</td>
                 </tr>
             </tbody>
         </table>

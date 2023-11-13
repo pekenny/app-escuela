@@ -11,6 +11,7 @@
             <ul class="nav navbar-nav">
                 <router-link to="/" class="nav-link active"> Sistema Web</router-link>
                 <router-link to="Profesores" class="nav-link">Profesores</router-link>
+                <router-link to="Asistencias" class="nav-link">Asistencias</router-link >
                 <router-link to="Asignaturas" class="nav-link">Asignaturas</router-link>
                 <router-link to="Licencias" class="nav-link">Licencias</router-link>
                 <router-link to="Usuarios" class="nav-link">Usuarios</router-link>

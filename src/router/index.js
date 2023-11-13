@@ -25,12 +25,13 @@ const router = createRouter({
           name: "agregarProfesor",
           component: () => import("../components/profesor/AgregarProfesor.vue"),        
         },
-        {
-          path: "/asistenciasProfesor",
-          name: "asistenciasProfesor",
-          component: () => import("../components/profesor/AsistenciasProfesor.vue"),
-        }
+    
       ]
+    },
+    {
+      path: "/asistencias",
+      name: "asistencias",
+      component: () => import("../views/AsistenciasView.vue"),
     },
     {
       path: "/asignaturas",
