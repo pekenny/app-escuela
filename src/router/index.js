@@ -37,6 +37,13 @@ const router = createRouter({
       path: "/asignaturas",
       name: "asignaturas",
       component: AsignaturaView,
+      children: [
+        {
+          path: "/agregarAsignatura",
+          name: "agregarAsignatura",
+          component: () => import("../components/AgregarAsignatura.vue"),
+        }
+      ]
     },
     {
       path: "/licencias",

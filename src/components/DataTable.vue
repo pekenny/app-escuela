@@ -13,8 +13,7 @@ import 'datatables.net-buttons-bs5';
 import 'datatables.net-buttons/js/buttons.colVis.mjs';
 import 'datatables.net-buttons/js/buttons.html5.mjs';
 
-// let dt;
-// const table = ref();
+
 const props = defineProps({
     title: {
         type: String,
@@ -31,7 +30,12 @@ const props = defineProps({
     asistencias: {
         type: Array
 
-    }
+    },
+    asignaturas: {
+        type: Array
+
+    },
+
 })
 const profesorStore = useProfesoresStore();
 
@@ -56,8 +60,7 @@ onMounted(() => {
 </script>
 <template>
     <div>
-        <!-- <DataTable class="table table-hover table-striped" width="100%" :data="profesores" :columns="columns" ref="table">
-                                </DataTable> -->
+
         <table :id="title" class="table table-hover table-striped" width="100%">
             <thead>
                 <tr>
@@ -91,9 +94,23 @@ onMounted(() => {
                     <td>{{ asistencia.fecha }}</td>
                     <td
                         :class="asistencia.estado == 'ausente' ? 'bg-danger p-2 text-white bg-opacity-75' :
-                         asistencia.estado == 'justificado' ? 'bg-warning p-2 text-white bg-opacity-75' : 'bg-success p-2 text-white bg-opacity-75'">
+                            asistencia.estado == 'justificado' ? 'bg-warning p-2 text-white bg-opacity-75' : 'bg-success p-2 text-white bg-opacity-75'">
                         {{ asistencia.estado }}</td>
                 </tr>
+                <!-- Asignaturas -->
+                <tr v-for="asignatura in asignaturas" :key="asignatura" v-else-if="title == 'Asignatura'">
+                    <td>{{ asignatura.id }}</td>
+                    <td>{{ asignatura.nombreAsignatura }}</td>
+                    <td>{{ asignatura.cantHoras }}</td>
+                    <td>{{ asignatura.nombreCarrera }}</td>
+                    <td>{{ asignatura.nombreyapellido }}</td>
+                    <td><button class="btn btn-sm btn-success"
+                            @click="asignaturaStore.editAsignatura(asignatura)"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger" style="margin: auto 2px;"
+                            @click="asignaturaStore.eliminarAsignatura(asignatura)"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+
             </tbody>
         </table>
 

@@ -6,6 +6,7 @@ import { get } from "jquery";
 
 export const useAsignaturasStore = defineStore("asignaturas", () => {
   const dataList = ref([]);
+  const asigCarrera = ref([]);
   const asignatura = reactive({
     nameAsignatura: "",
     cantHoras: "",
@@ -15,6 +16,14 @@ export const useAsignaturasStore = defineStore("asignaturas", () => {
     const request = await axios.get("http://localhost:3000/api/asignaturas");
     const data = await request.data;
     dataList.value = data;
+  }
+
+  const getAsignaturaCarrera = async () => {
+    const request = await axios.get(
+      "http://localhost:3000/api/asignaturasCarrera"
+    );
+    const data = await request.data;
+    asigCarrera.value = data;
   }
 
   // Add Asignatura
@@ -43,6 +52,7 @@ export const useAsignaturasStore = defineStore("asignaturas", () => {
 
   onMounted(() => {
     getAsignaturas();
+    getAsignaturaCarrera();
   })
 
   const listAsignatura = computed(() => {
@@ -56,6 +66,7 @@ export const useAsignaturasStore = defineStore("asignaturas", () => {
       inmediate: true
   })
   return {
+    asigCarrera,
     asignatura,
     listAsignatura,
     addAsignatura,

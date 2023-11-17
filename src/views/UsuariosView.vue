@@ -14,7 +14,10 @@ const title = ref('Usuario');
 </script>
 <template>
     <div>
-        <h1>Usuarios</h1>
+        <div class="card text-bg-primary p-3 bg-gradient">
+            <h1 class="text-center">Usuarios</h1>
+
+        </div>
         <div class="card">
             <div class="card-header">
                 <a name="" id="" class="btn btn-primary" @click="userView = !userView" role="button">

@@ -48,10 +48,10 @@ const profesorStore = useProfesoresStore();
         </div>
         <div class="card">
             <div class="card-header">
-               
-                <router-link class="btn btn-primary m-1" to="/agregarProfesor" @click="userView = !userView">Agregar Profesor</router-link>
-                <!-- <RouterLink class="btn btn-primary m-1" to="/asistenciasProfesor" @click="userView = !userView">Asistencia</RouterLink> -->
-             
+
+                <router-link class="btn btn-primary m-1" to="/agregarProfesor" @click="userView = !userView">Agregar
+                    Profesor</router-link>
+
             </div>
             <div class="card-body" v-if="!userView">
                 <DataTable :columns="columns" :profesores="profesorStore.profComputed" :title="title" />
@@ -60,7 +60,7 @@ const profesorStore = useProfesoresStore();
             </div>
         </div>
 
-       
+
         <RouterView v-if="userView"></RouterView>
     </div>
 </template>

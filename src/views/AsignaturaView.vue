@@ -1,7 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import AgregarAsignatura from '../components/AgregarAsignatura.vue';
-import { useRouter } from 'vue-router';
+import { useAsignaturasStore } from '../stores/asignaturas';
+import { useRouter, RouterLink, RouterView } from 'vue-router';
+import DataTable from '../components/DataTable.vue';
+import Modal from '../components/profesor/Modal.vue';
+
+const asignaturaStore = useAsignaturasStore();
 
 const router = useRouter();
 // validar que exista data en localStorage
@@ -11,41 +16,36 @@ if (!localStorage.getItem('data')) {
 
 const asignView = ref(false);
 const title = ref('Asignatura');
+
+const columns = [
+    {data: 'id', title: 'Id'},
+    {data: 'nombreAsignatura', title: 'Asignatura'},
+    {data: 'cantHoras', title: 'Horas'},
+    {data: 'carrera', title: 'Carrera'},
+    {data: 'profesor', title: 'Profesor'},
+    {data: 'Acciones'}
+]
 </script>
 <template>
     <div>
-        <h1>Asignatura</h1>
+        <div class="card text-bg-primary p-3 bg-gradient">
+            <h1 class="text-center">Asignatura</h1>
+
+        </div>
         <div class="card">
-            <div class="card-header">
-                <a name="" id="" class="btn btn-primary" role="button" @click="asignView = !asignView">
-                    Agregar Asignatura
-                </a>
+            <div class="card-header">                
+                <router-link class="btn btn-primary m-1" to="/agregarAsignatura" @click="asignView = !asignView"> Agregar Asignatura</router-link>
             </div>
             <div class="card-body">
 
-                <div class="table-responsive">
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Id </th>
-                                <th scope="col">Nombre de la Asignatura </th>
-                                <th scope="col">Cantidad de Hs </th>
-                                <th scope="col">Carrera </th>
-                                <th scope="col">Profesor </th>
-                                <th scope="col">Acciones </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-
+             
+                <DataTable :asignaturas="asignaturaStore.asigCarrera" :title="title" :columns="columns" />
             </div>
 
         </div>
         <!-- componente asignatura -->
-        <AgregarAsignatura v-if="asignView" :title="title" />
+        
+        <RouterView  v-if="asignView"/>
     </div>
 </template>
 
