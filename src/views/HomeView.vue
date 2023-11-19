@@ -1,5 +1,11 @@
 <script setup>
-
+    import { useRouter } from 'vue-router';
+    
+    const router = useRouter();
+    // validar que exista data en localStorage
+    if(!localStorage.getItem('data')){
+        router.push('/login');
+    }
 </script>
 <template>
   <div class="welcome-container">

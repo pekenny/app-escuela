@@ -1,4 +1,8 @@
 <script setup>
+  import { reactive } from 'vue';
+  import { useUserStore } from '../stores/user';
+
+  const userStore = useUserStore();
 
 </script>
 <template>
@@ -6,12 +10,12 @@
         <h2>Login</h2>
         <form>
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" name="username" required v-model="userStore.user.username">
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" required v-model="userStore.user.password">
 
-            <button type="submit">Login</button>
+            <button type="submit" @click="userStore.validationLogin">Login</button>
         </form>
     </div>
 </template>
@@ -33,6 +37,7 @@
       background-color: #fff;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 10%;
     }
 
     .container h2 {

@@ -1,62 +1,67 @@
 <script setup>
-import { ref } from 'vue';
-import AgregarUsuario from '../components/AgregarProfesor.vue';
+import { ref, watch } from 'vue';
+import AgregarProfesor from '../components/profesor/AgregarProfesor.vue';
+import { useProfesoresStore } from '../stores/profesores';
+import { useRouter, RouterLink, RouterView } from 'vue-router';
+import DataTable from '../components/DataTable.vue';
+import Modal from '../components/profesor/Modal.vue';
 
-const userView  = ref(false);
+const userView = ref(false);
 const title = ref('Profesor');
+const columns = [
+    { data: 'nombreyapellido', title: 'Nombre y Apellido' },
+    { data: 'dni', title: 'DNI' },
+    { data: 'domicilio', title: 'Domicilio' },
+    { data: 'telefono', title: 'Telefono' },
+    { data: 'email', title: 'Email' },
+    { data: 'foto', title: 'Foto' },
+    { data: 'cv', title: 'CV' },
+    { data: 'fechadeingreso', title: 'Fecha de Ingreso' },
+    { data: 'fechadebaja', title: 'Fecha de Baja' },
+    {
+        data: 'Acciones'
+    }
+]
+
+const router = useRouter();
+// validar que exista data en localStorage
+if (!localStorage.getItem('data')) {
+    router.push('/login');
+}
+
+
+const profesorStore = useProfesoresStore();
+
+
+// const updateProfesores = (data) => {
+//     profesorStore.profesores.value = { ...data };
+// }
+
+
 </script>
+
 <template>
     <div>
-        <h1>Profesores</h1>
+        <div class="card text-bg-primary p-3">
+
+            <h1 class="text-center">Listado de Profesores</h1>
+        </div>
         <div class="card">
             <div class="card-header">
-                <a name="" id="" class="btn btn-primary" role="button" @click="userView = !userView">
-                    Agregar Profesor
-                </a>
+
+                <router-link class="btn btn-primary m-1" to="/agregarProfesor" @click="userView = !userView">Agregar
+                    Profesor</router-link>
+
             </div>
-            <div class="card-body">
-
-                <div class="table-responsive-sm">
-                    <table class="table table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nombre y Apellido </th>
-                                <th scope="col">Teléfono </th>
-                                <th scope="col">Foto </th>
-                                <th scope="col">CV </th>
-                                <th scope="col">Asignatura/s </th>
-                                <th scope="col">Fecha de Ingreso </th>
-                                <th scope="col">Acciones </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="">
-                                <td scope="row">Juan Jimenez</td>
-                                <td>2644510368</td>
-                                <td>imagen.jpg</td>
-                                <td>CV.pdf</td>
-                                <td>Programacion I</td>
-                                <td>12/12/2019</td>
-                                <td>
-                                    <input name="btnfojadeservicio" id="btnfojadeservicio" class="btn btn-primary"
-                                        type="button" value="Foja de Servicio">
-                                    |
-                                    <input name="btneditar" id="btneditar" class="btn btn-info" type="button"
-                                        value="Editar">
-                                    |
-                                    <input name="btnbaja" id="btnbaja" class="btn btn-danger" type="button" value="Baja">
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-
+            <div class="card-body" v-if="!userView">
+                <DataTable :columns="columns" :profesores="profesorStore.profComputed" :title="title" />
+                <Modal :title="title" v-for="profesor in profesorStore.profComputed" :key="profesor.id"
+                    :profesor="profesor" />
             </div>
         </div>
 
-        <!-- Componente Usuario -->
-        <AgregarUsuario v-if="userView" :title="title"/>
+
+        <RouterView v-if="userView"></RouterView>
     </div>
 </template>
 
