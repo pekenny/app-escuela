@@ -75,8 +75,8 @@ onMounted(() => {
                     <td>{{ profesor.domicilio }}</td>
                     <td>{{ profesor.telefono }}</td>
                     <td>{{ profesor.email }}</td>
-                    <td>{{ profesor.foto }}</td>
-                    <td>{{ profesor.cv }}</td>
+                    <td><img style="width: 50px;" :src="`http://localhost:3000/uploads/${profesor.foto}`" alt=""></td>
+                    <td><a target="_blank" :href="`http://localhost:3000/uploads/${profesor.cv}`">{{ profesor.cv }}</a></td>
                     <td>{{ profesor.fechadeingreso }}</td>
                     <td>{{ profesor.fechadebaja }}</td>
                     <td class="d-flex"><button class="btn btn-success btn-sm" data-bs-toggle="modal"

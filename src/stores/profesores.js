@@ -12,12 +12,14 @@ export const useProfesoresStore = defineStore("profesores", () => {
     domicilio: "",
     telefono: "",
     email: "",
-    foto: {},
-    cv: {},
+    // fotoFIle: {},
+    fotoName:"",
+    // cv: {},
+    cvName: "",
     fechadeingreso: "",
-    fechadebaja: "",
+    fechadebaja: ""   
   });
-
+ 
   const getProfesores = async () => {
     const request = await fetch("http://localhost:3000/api/profesores");
     const data = await request.json();
@@ -30,34 +32,58 @@ export const useProfesoresStore = defineStore("profesores", () => {
   // });
   onMounted(getProfesores);
 
-  const addProfesor = async () => {
-    // peticion post con axios a API
-    try {
-      const request = await axios.post(
-        "http://localhost:3000/api/profesores",
-        profesor,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          responseType: "json",
-          withCredentials: false,
-        }
-      );
-
-      if (request.status !== 200) {
-        throw new Error(`Error al agregar profesor: ${request.status}`);
+const addProfesor = async () => {
+  try {
+    const photoResponse = await axios.post(
+      "http://localhost:3000/api/uploadPhoto",
+      { photo: profesor.fotoFile },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        responseType: "json",
+        withCredentials: false,
       }
+    );
+    console.log(photoResponse.data);
+   
+    const cvRequest = await axios.post(
+      "http://localhost:3000/api/uploadCv",
+      { cv: profesor.cvFile },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        responseType: "json",
+        withCredentials: false,
+      }
+    );
+    console.log(cvRequest.data);
+    // profesor.foto.nameFoto = profesor.foto.originalname;
+    const profesorResponse = await axios.post(
+      "http://localhost:3000/api/profesores",
+      profesor,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        responseType: "json",
+        withCredentials: false,
+      }
+    );
 
-      const response = request.data;
-      // profesores.value.push(response);
-      getProfesores();
-      swal("Registro agregado correctamente", "Presiona el botón!", "success");
-    } catch (error) {
-      console.error(error);
-      swal("Error al agregar el registro", "Presiona el botón!", "error");
+    if (profesorResponse.status !== 200) {
+      throw new Error(`Error al agregar profesor: ${profesorResponse.status}`);
     }
-  };
+
+    console.log(profesorResponse.data);
+    getProfesores();
+    swal("Registro agregado correctamente", "Presiona el botón!", "success");
+  } catch (error) {
+    console.error(error);
+    swal("Error al agregar el registro", "Presiona el botón!", "error");
+  }
+};
 
   const eliminarProfesor = async (id) => {
     try {
@@ -97,7 +123,7 @@ export const useProfesoresStore = defineStore("profesores", () => {
 
    watch(profesores, () => {
     getProfesores;  
-    console.log(profesores.value);
+    
   },{
     immediate: true
   })

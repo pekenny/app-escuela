@@ -20,7 +20,7 @@ const profesorStore = useProfesoresStore();
             </div>
             <div class="card-body">
 
-                <form @submit.prevent="profesorStore.addProfesor">
+                <form @submit.prevent="profesorStore.addProfesor" enctype="multipart/form-data">
 
                     <div class="mb-3">
                         <label for="usuario" class="form-label">Nombre: </label>
@@ -52,12 +52,12 @@ const profesorStore = useProfesoresStore();
                     <div class="mb-3">
                         <label for="foto" class="form-label">Foto</label>
                         <input type="file" class="form-control" name="foto" id="foto" aria-describedby="helpId"
-                            @change="profesorStore.profesor.foto = $event.target.files[0].name">
+                            @change="profesorStore.profesor.fotoFile = $event.target.files[0]; profesorStore.profesor.fotoName = $event.target.files[0].name">
                     </div>
                     <div class="mb-3">
                         <label for="cv" class="form-label">CV</label>
                         <input type="file" class="form-control" name="cv" id="cv" aria-describedby="helpId"
-                            @change="$event => profesorStore.profesor.cv = $event.target.files[0].name">
+                            @change="profesorStore.profesor.cvFile = $event.target.files[0]; profesorStore.profesor.cvName = $event.target.files[0].name">
                     </div>
 
                     <div class="mb-3">
@@ -81,6 +81,4 @@ const profesorStore = useProfesoresStore();
 </template>
 
 
-<style scoped>
-
-</style>
+<style scoped></style>

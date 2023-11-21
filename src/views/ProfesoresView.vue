@@ -61,7 +61,7 @@ const profesorStore = useProfesoresStore();
         </div>
 
 
-        <RouterView v-if="userView"></RouterView>
+        <RouterView :title="title" v-if="userView"></RouterView>
     </div>
 </template>
 
