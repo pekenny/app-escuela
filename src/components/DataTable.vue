@@ -35,6 +35,9 @@ const props = defineProps({
         type: Array
 
     },
+    usuarios: {
+        type: Array
+    }
 
 })
 const profesorStore = useProfesoresStore();
@@ -109,6 +112,15 @@ onMounted(() => {
                         <button class="btn btn-sm btn-danger" style="margin: auto 2px;"
                             @click="asignaturaStore.eliminarAsignatura(asignatura)"><i class="fas fa-trash-alt"></i></button>
                     </td>
+                </tr>
+
+                <!-- Usuarios -->
+                <tr v-for="usuario in usuarios" :key="usuario" v-else-if="title == 'Usuario'">
+                    <td>{{ usuario.id }}</td>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.password }}</td>
+                    <td>{{ usuario.correo }}</td>
+                    <td>{{ usuario.nombrePermiso }}</td>
                 </tr>
 
             </tbody>

@@ -13,12 +13,13 @@ export const useAsistenciasStore = defineStore("asistencias", () => {
 
   // Obtener las asistencias
   const getAsistencia = async () => {
-    const request = await axios.get("http://localhost:3000/api/asistencias/");
-    const data = await request.data;
-    asistenciaProfesor.value = data;
+    const request = await axios.get("http://localhost:3000/api/asistencias/");   
+    asistenciaProfesor.value = request.data;
   };
 
-  onMounted(getAsistencia);
+ onMounted(async () => {
+   await getAsistencia();
+ })
 
   // Agregar Asistencia
   const addAsistencia = async () => {

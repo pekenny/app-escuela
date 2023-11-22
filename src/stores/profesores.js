@@ -30,7 +30,9 @@ export const useProfesoresStore = defineStore("profesores", () => {
   //   const data = await request.json();
   //   profesores.value.push(...data);
   // });
-  onMounted(getProfesores);
+  onMounted(async () => {
+    await getProfesores();
+  })
 
 const addProfesor = async () => {
   try {

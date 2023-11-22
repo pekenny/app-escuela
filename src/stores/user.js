@@ -2,6 +2,7 @@ import { ref, reactive, watch} from "vue";
 import { defineStore } from "pinia";
 import { useRouter } from "vue-router";
 
+
 export const useUserStore = defineStore("user", () => {
   const login = ref(false);
   const user = reactive({
@@ -10,8 +11,8 @@ export const useUserStore = defineStore("user", () => {
   });
 
  
-
   const router = useRouter();
+
 
   const validationLogin = () => {
     if (user.username === "admin" && user.password === "admin") {

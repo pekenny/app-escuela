@@ -2,6 +2,13 @@
 import { ref } from 'vue';
 import AgregarUsuario from '../components/AgregarUsuario.vue';
 import { useRouter } from 'vue-router';
+import { useUsuariosStore } from '../stores/usuarios';
+import DataTable from '../components/DataTable.vue';
+
+
+const usuariosStore = useUsuariosStore();
+const userView  = ref(false);
+const title = ref('Usuario');
 
 const router = useRouter();
 // validar que exista data en localStorage
@@ -9,8 +16,16 @@ if (!localStorage.getItem('data')) {
     router.push('/login');
 }
 
-const userView  = ref(false);
-const title = ref('Usuario');
+
+const columns = [
+    { data: 'id' },
+    { data: 'usuario' },
+    { data: 'contraseña' },
+    { data: 'correo' },
+    { data: 'rol' },
+];
+
+
 </script>
 <template>
     <div>
@@ -26,7 +41,7 @@ const title = ref('Usuario');
             </div>
             <div class="card-body">
 
-                <div class="table-responsive">
+                <!-- <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
@@ -34,7 +49,7 @@ const title = ref('Usuario');
                                 <th scope="col">Nombre del Usuario </th>
                                 <th scope="col">Contraseña </th>
                                 <th scope="col">Correo </th>
-                                <th scope="col">Acciones </th>
+                                <th scope="col">Rol </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,15 +66,11 @@ const title = ref('Usuario');
                                         value="Eliminar">
                                 </td>
                             </tr>
-                            <tr class="">
-                                <td scope="row">Item</td>
-                                <td>Item</td>
-                                <td>Item</td>
-                            </tr>
+                          
                         </tbody>
                     </table>
-                </div>
-
+                </div> -->
+                <DataTable :columns="columns" :title="title" :usuarios="usuariosStore.users"/>
             </div>
         </div>
         <!-- agegando componente usuario -->
