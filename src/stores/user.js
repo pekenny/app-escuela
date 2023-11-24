@@ -4,6 +4,7 @@ import { useRouter } from "vue-router";
 import axios from "axios";
 
 export const useUserStore = defineStore("user", () => {
+  const alert = ref(false);
   const login = ref(false);
   const user = reactive({
     username: "",
@@ -29,6 +30,10 @@ export const useUserStore = defineStore("user", () => {
     } catch (error) {
       console.error(error);
       login.value = false;
+      alert.value = true;
+      setTimeout(() => {
+        alert.value = false;
+      }, 3000);
     }
   }
 
@@ -59,6 +64,7 @@ export const useUserStore = defineStore("user", () => {
  }, [login]);
  
   return {
+    alert,
     login,
     user,
     loginData,
