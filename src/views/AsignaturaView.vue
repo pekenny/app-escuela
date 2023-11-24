@@ -28,11 +28,11 @@ const columns = [
 </script>
 <template>
     <div>
-        <div class="card text-bg-primary p-3 bg-gradient">
+        <div class="text-bg-primary p-3 bg-gradient">
             <h1 class="text-center">Asignatura</h1>
 
         </div>
-        <div class="card">
+        <div class="">
             <div class="card-header">                
                 <router-link class="btn btn-primary m-1" to="/agregarAsignatura" @click="asignView = !asignView"> Agregar Asignatura</router-link>
             </div>

@@ -29,11 +29,11 @@ const columns = [
 </script>
 <template>
     <div>
-        <div class="card text-bg-primary p-3 bg-gradient">
+        <div class="text-bg-primary p-3 bg-gradient">
             <h1 class="text-center">Usuarios</h1>
 
         </div>
-        <div class="card">
+        <div class="p-3">
             <div class="card-header">
                 <a name="" id="" class="btn btn-primary" @click="userView = !userView" role="button">
                     Agregar Usuario
