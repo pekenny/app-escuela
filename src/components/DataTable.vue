@@ -35,6 +35,9 @@ const props = defineProps({
         type: Array
 
     },
+    usuarios: {
+        type: Array
+    }
 
 })
 const profesorStore = useProfesoresStore();
@@ -75,8 +78,8 @@ onMounted(() => {
                     <td>{{ profesor.domicilio }}</td>
                     <td>{{ profesor.telefono }}</td>
                     <td>{{ profesor.email }}</td>
-                    <td>{{ profesor.foto }}</td>
-                    <td>{{ profesor.cv }}</td>
+                    <td><img style="width: 50px;" :src="`http://localhost:3000/uploads/${profesor.foto}`" alt=""></td>
+                    <td><a target="_blank" :href="`http://localhost:3000/uploads/${profesor.cv}`">{{ profesor.cv }}</a></td>
                     <td>{{ profesor.fechadeingreso }}</td>
                     <td>{{ profesor.fechadebaja }}</td>
                     <td class="d-flex"><button class="btn btn-success btn-sm" data-bs-toggle="modal"
@@ -109,6 +112,15 @@ onMounted(() => {
                         <button class="btn btn-sm btn-danger" style="margin: auto 2px;"
                             @click="asignaturaStore.eliminarAsignatura(asignatura)"><i class="fas fa-trash-alt"></i></button>
                     </td>
+                </tr>
+
+                <!-- Usuarios -->
+                <tr v-for="usuario in usuarios" :key="usuario" v-else-if="title == 'Usuario'">
+                    <td>{{ usuario.id }}</td>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.password }}</td>
+                    <td>{{ usuario.correo }}</td>
+                    <td>{{ usuario.nombrePermiso }}</td>
                 </tr>
 
             </tbody>

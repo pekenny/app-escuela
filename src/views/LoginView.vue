@@ -8,14 +8,15 @@
 <template>
     <div class="container">
         <h2>Login</h2>
-        <form>
+        <form @submit.prevent="userStore.loginData">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required v-model="userStore.user.username">
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required v-model="userStore.user.password">
 
-            <button type="submit" @click="userStore.validationLogin">Login</button>
+            <!-- <button type="submit" @click="userStore.validationLogin">Login</button> -->
+            <button type="submit">Login</button>
         </form>
     </div>
 </template>
