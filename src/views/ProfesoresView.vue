@@ -42,11 +42,11 @@ const profesorStore = useProfesoresStore();
 
 <template>
     <div>
-        <div class="card text-bg-primary p-3">
+        <div class="text-bg-primary p-3">
 
             <h1 class="text-center">Listado de Profesores</h1>
         </div>
-        <div class="card">
+        <div class="">
             <div class="card-header">
 
                 <router-link class="btn btn-primary m-1" to="/agregarProfesor" @click="userView = !userView">Agregar
