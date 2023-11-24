@@ -12,6 +12,7 @@ import 'datatables.net-autofill-bs5';
 import 'datatables.net-buttons-bs5';
 import 'datatables.net-buttons/js/buttons.colVis.mjs';
 import 'datatables.net-buttons/js/buttons.html5.mjs';
+import moment from 'moment';
 
 
 const props = defineProps({
@@ -80,8 +81,8 @@ onMounted(() => {
                     <td>{{ profesor.email }}</td>
                     <td><img style="width: 50px;" :src="`http://localhost:3000/uploads/${profesor.foto}`" alt=""></td>
                     <td><a target="_blank" :href="`http://localhost:3000/uploads/${profesor.cv}`">{{ profesor.cv }}</a></td>
-                    <td>{{ profesor.fechadeingreso }}</td>
-                    <td>{{ profesor.fechadebaja }}</td>
+                    <td>{{ moment(profesor.fechadeingreso).format('DD/MM/YYYY') }}</td>
+                    <td>{{ moment(profesor.fechadebaja).format('DD/MM/YYYY') }}</td>
                     <td class="d-flex"><button class="btn btn-success btn-sm" data-bs-toggle="modal"
                             :data-bs-target="'#' + profesor.id">
                             <i class="fas fa-edit"></i></button>
@@ -94,7 +95,7 @@ onMounted(() => {
                 <!-- Asistencias -->
                 <tr v-for="asistencia in asistencias" :key="asistencia" v-else-if="title == 'Asistencia'">
                     <td>{{ asistencia.nombreyapellido }}</td>
-                    <td>{{ asistencia.fecha }}</td>
+                    <td>{{ moment(asistencia.fechadeasistencia).format('DD/MM/YYYY') }}</td>
                     <td
                         :class="asistencia.estado == 'ausente' ? 'bg-danger p-2 text-white bg-opacity-75' :
                             asistencia.estado == 'justificado' ? 'bg-warning p-2 text-white bg-opacity-75' : 'bg-success p-2 text-white bg-opacity-75'">

@@ -14,7 +14,7 @@ const profesorStore = useProfesoresStore();
 </script>
 <template>
     <div>
-        <div class="card">
+        <div class="shadow p-3 mb-5 bg-body rounded">
             <div class="card-header border">
                 <h5 class="card-title text-center">Formulario para agregar {{ title }}</h5>
             </div>
