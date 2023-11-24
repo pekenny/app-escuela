@@ -17,13 +17,14 @@ const columns = [
     
 ]
 
+const userLogeado = JSON.parse(localStorage.getItem('data'));
 
 </script>
 <template>
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div :class="userLogeado.user[0].id_permisos === 1 ? 'col-6' : 'col-12'">
                     <h1 class="text-center card-title p-3 bg-primary text-white bg-gradient">Formulario de Asistencia</h1>
                     <!-- Formulario -->
                     <form class="card p-3" @submit.prevent="asistenciaStore.addAsistencia()">
@@ -54,7 +55,7 @@ const columns = [
                         <!-- Otros elementos del formulario -->
                     </form>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" v-if="userLogeado.user[0].id_permisos === 1">
                     <h1 class="text-center card-title p-3 bg-primary text-white bg-gradient">Listado de Asistencias</h1>
                     <DataTable class="py-2" :columns="columns" :asistencias="asistenciaStore.asistenciaP" :title="title" />
                 </div>
