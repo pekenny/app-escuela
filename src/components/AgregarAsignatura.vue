@@ -12,7 +12,7 @@ const asignaturaStore = useAsignaturasStore();
 </script>
 <template>
     <div>
-        <div class="card">
+        <div class="shadow p-3 mb-5 bg-body rounded">
             <div class="card-header">
                 {{ title }}
             </div>

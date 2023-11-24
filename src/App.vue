@@ -15,9 +15,9 @@ const userStore = useUserStore();
 
   <div v-else>
     <Header></Header>
-
-    <main class="container">
-      <router-view></router-view>
+    
+    <main class="container p-3">
+      <router-view style="background-color: #eaeef4;" class=""></router-view>
     </main>
   </div>
 </template>
@@ -25,5 +25,8 @@ const userStore = useUserStore();
 <style scoped>
   * {
     font-size: small;
+  }
+  .container {
+    background-color: #eaeef4;
   }
 </style>

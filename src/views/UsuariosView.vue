@@ -29,17 +29,17 @@ const columns = [
 </script>
 <template>
     <div>
-        <div class="card text-bg-primary p-3 bg-gradient">
+        <div class="text-bg-primary p-3 bg-gradient">
             <h1 class="text-center">Usuarios</h1>
 
         </div>
-        <div class="card">
+        <div class="p-3">
             <div class="card-header">
                 <a name="" id="" class="btn btn-primary" @click="userView = !userView" role="button">
                     Agregar Usuario
                 </a>
             </div>
-            <div class="card-body">
+            <div class="card-body shadow p-3 mb-5 bg-body rounded">
 
                 <!-- <div class="table-responsive">
                     <table class="table">
@@ -70,7 +70,7 @@ const columns = [
                         </tbody>
                     </table>
                 </div> -->
-                <DataTable :columns="columns" :title="title" :usuarios="usuariosStore.users"/>
+                <DataTable class="" :columns="columns" :title="title" :usuarios="usuariosStore.users"/>
             </div>
         </div>
         <!-- agegando componente usuario -->
