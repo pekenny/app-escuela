@@ -32,6 +32,7 @@ console.log(userLogeado);
                                 <div class="card-body">
                                     <h5>{{ userLogeado.user[0].nombre }}</h5>
                                     <p class="card-text">{{ userLogeado.user[0].correo }}</p>
+                                    <p class="card-text">{{ userLogeado.user[0].rol }}</p>
                                 </div>
                             </div>
                         </li>
@@ -57,6 +58,7 @@ console.log(userLogeado);
                                 <div class="card-body">
                                     <h5>{{ userLogeado.user[0].nombre }}</h5>
                                     <p class="card-text">{{ userLogeado.user[0].correo }}</p>
+                                    <p class="card-text">{{ userLogeado.user[0].rol }}</p>
                                 </div>
                             </div>
                         </li>
