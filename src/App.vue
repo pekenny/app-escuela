@@ -17,7 +17,7 @@ const userStore = useUserStore();
     <Header></Header>
 
     <main class="container">
-      <router-view></router-view>
+      <router-view class="shadow p-3 mb-5 bg-body rounded"></router-view>
     </main>
   </div>
 </template>

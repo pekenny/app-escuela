@@ -11,7 +11,7 @@ console.log(userLogeado);
 </script>
 <template>
     <div>
-        <nav class="navbar navbar-expand navbar-light bg-light custom-nav" v-if="userLogeado.user[0].id_permisos === 1">
+        <nav class="navbar navbar-expand bg-light custom-nav" v-if="userLogeado.user[0].id_permisos === 1">
             <ul class="nav navbar-nav">
                 <router-link to="/" class="nav-link active"> Sistema Web</router-link>
                 <router-link to="Profesores" class="nav-link">Profesores</router-link>
