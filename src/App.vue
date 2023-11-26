@@ -16,7 +16,7 @@ const userStore = useUserStore();
   <div v-else>
     <Header></Header>
     
-    <main class="container p-3">
+    <main class="container">
       <router-view style="background-color: #f8f8f8;" class=""></router-view>
     </main>
   </div>
