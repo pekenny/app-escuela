@@ -30,9 +30,9 @@ console.log(userLogeado);
                         <li>
                             <div class="p-3 flex-column align-items-center">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center card-title">{{ userLogeado.user[0].nombre }}</h5>
-                                    <p class="card-card-title text-center card-title">{{ userLogeado.user[0].correo }}</p>
-                                    <p class="card-card-title text-center card-title">{{ userLogeado.user[0].rol }}</p>
+                                    <h5>{{ userLogeado.user[0].nombre }}</h5>
+                                    <p class="card-text">{{ userLogeado.user[0].correo }}</p>
+                                    <p class="card-text">{{ userLogeado.user[0].rol }}</p>
                                 </div>
                             </div>
                         </li>
@@ -56,9 +56,9 @@ console.log(userLogeado);
                         <li>
                             <div class="p-3 shadow-sm bg-light flex-column align-items-center">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center card-title">{{ userLogeado.user[0].nombre }}</h5>
-                                    <p class="card-card-title text-center card-title">{{ userLogeado.user[0].correo }}</p>
-                                    <p class="card-card-title text-center card-title">{{ userLogeado.user[0].rol }}</p>
+                                    <h5>{{ userLogeado.user[0].nombre }}</h5>
+                                    <p class="card-text">{{ userLogeado.user[0].correo }}</p>
+                                    <p class="card-text">{{ userLogeado.user[0].rol }}</p>
                                 </div>
                             </div>
                         </li>
