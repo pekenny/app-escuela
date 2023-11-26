@@ -26,13 +26,13 @@ console.log(userLogeado);
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user"></i>
                     </a>
-                    <ul class="dropdown-menu shadow-sm bg-light" aria-labelledby="userDropdown">
+                    <ul class="dropdown-menu shadow p-3 mb-5 bg-body rounded" aria-labelledby="userDropdown">
                         <li>
-                            <div class="p-3 shadow-sm bg-light flex-column align-items-center">
+                            <div class="p-3 flex-column align-items-center">
                                 <div class="card-body">
-                                    <h5>{{ userLogeado.user[0].nombre }}</h5>
-                                    <p class="card-text">{{ userLogeado.user[0].correo }}</p>
-                                    <p class="card-text">{{ userLogeado.user[0].rol }}</p>
+                                    <h5 class="card-title text-center card-title">{{ userLogeado.user[0].nombre }}</h5>
+                                    <p class="card-card-title text-center card-title">{{ userLogeado.user[0].correo }}</p>
+                                    <p class="card-card-title text-center card-title">{{ userLogeado.user[0].rol }}</p>
                                 </div>
                             </div>
                         </li>
@@ -52,13 +52,13 @@ console.log(userLogeado);
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user"></i>
                     </a>
-                    <ul class="dropdown-menu shadow-sm bg-light" aria-labelledby="userDropdown">
+                    <ul class="dropdown-menu shadow p-3 mb-5 bg-body rounded" aria-labelledby="userDropdown">
                         <li>
                             <div class="p-3 shadow-sm bg-light flex-column align-items-center">
                                 <div class="card-body">
-                                    <h5>{{ userLogeado.user[0].nombre }}</h5>
-                                    <p class="card-text">{{ userLogeado.user[0].correo }}</p>
-                                    <p class="card-text">{{ userLogeado.user[0].rol }}</p>
+                                    <h5 class="card-title text-center card-title">{{ userLogeado.user[0].nombre }}</h5>
+                                    <p class="card-card-title text-center card-title">{{ userLogeado.user[0].correo }}</p>
+                                    <p class="card-card-title text-center card-title">{{ userLogeado.user[0].rol }}</p>
                                 </div>
                             </div>
                         </li>
