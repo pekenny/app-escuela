@@ -27,7 +27,7 @@ const userLogeado = JSON.parse(localStorage.getItem('data'));
                 <div :class="userLogeado.user[0].id_permisos === 1 ? 'col-6' : 'col-12'">
                     <h1 class="text-center card-title p-3 bg-primary text-white bg-gradient">Formulario de Asistencia</h1>
                     <!-- Formulario -->
-                    <form class="p-3" @submit.prevent="asistenciaStore.addAsistencia()">
+                    <form class="shadow p-3 mb-5 bg-body rounded" @submit.prevent="asistenciaStore.addAsistencia()">
                         <div class="mb-3">
                             <label for="prof" class="form-label">Profesor</label>
                             <select class="form-select" aria-label="Default select example" id="prof" v-model="asistenciaStore.asistencias.profesor">
@@ -55,7 +55,7 @@ const userLogeado = JSON.parse(localStorage.getItem('data'));
                         <!-- Otros elementos del formulario -->
                     </form>
                 </div>
-                <div class="col-lg-6" v-if="userLogeado.user[0].id_permisos === 1">
+                <div class="col-lg-6 shadow p-3 mb-5 bg-body rounded" v-if="userLogeado.user[0].id_permisos === 1">
                     <h1 class="text-center card-title p-3 bg-primary text-white bg-gradient">Listado de Asistencias</h1>
                     <DataTable class="py-2" :columns="columns" :asistencias="asistenciaStore.asistenciaP" :title="title" />
                 </div>

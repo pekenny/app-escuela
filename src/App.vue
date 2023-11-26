@@ -17,7 +17,7 @@ const userStore = useUserStore();
     <Header></Header>
     
     <main class="container">
-      <router-view style="background-color: #f8f8f8;" class="shadow p-3 mb-5 bg-body rounded"></router-view>
+      <router-view style="background-color: #f8f8f8;" class=""></router-view>
     </main>
   </div>
 </template>
@@ -26,7 +26,7 @@ const userStore = useUserStore();
   * {
     font-size: small;
   }
-  body {
+  .container {
     background-color: #eaeef4;
   }
 </style>

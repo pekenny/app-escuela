@@ -128,10 +128,10 @@ if (!localStorage.getItem('data')) {
                 </div>
             </div>
         </div>
-        <div class="row shadow p-3 mb-5 bg-body rounded">
+        <div class="row">
 
             <div class="col-xxl-4 col-xl-6 mb-4">
-                <div class="card-header-actions h-100">
+                <div class="card-header-actions h-100 shadow p-3 mb-5 bg-body rounded">
                     <div class="card-header">
                         Recent Activity
                         <div class="dropdown no-caret">
@@ -245,7 +245,7 @@ if (!localStorage.getItem('data')) {
                 </div>
             </div>
             <div class="col-xxl-4 col-xl-6 mb-4">
-                <div class="card-header-actions h-100">
+                <div class="card-header-actions h-100 shadow p-3 mb-5 bg-body rounded">
                     <div class="card-header">
                         Progress Tracker
                         <div class="dropdown no-caret">
