@@ -42,6 +42,16 @@ const userLogeado = JSON.parse(localStorage.getItem('data'));
                                 <option v-for="profesor in profesorStore.profComputed" :key="profesor.id"
                                     :value="profesor.id">{{ profesor.nombreyapellido }}</option>
 
+                            </select> -->
+                            <input type="hidden" class="form-control" id="prof" :value="asistenciaStore.asistencias.profesor = userLogeado.user[0].id" readonly>
+                        </div>
+                        <!-- asignaturas -->
+                        <div class="mb-3">
+                            <label for="asignatura" class="form-label">Asignatura</label>
+                            <select class="form-select" aria-label="Default select example" id="asignatura" v-model="asistenciaStore.asistencias.asignatura">
+                                <option selected>Seleccione una asignatura</option>
+                                <option v-for="asignatura in asignaturaStore.listAsignatura" :key="asignatura.id"
+                                    :value="asignatura.id">{{ asignatura.nombre }}</option>
                             </select>
                             <input v-if="userLogeado.user[0].id_permisos === 2" type="hidden" class="form-control" id="prof"
                                 :value="asistenciaStore.asistencias.profesor = userLogeado.user[0].id" readonly>
