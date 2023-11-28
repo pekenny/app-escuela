@@ -10,7 +10,8 @@ export const useUsuariosStore = defineStore('usuarios', () => {
         usuario: '',
         contrasena: '',
         correo: '',
-        rol: ''
+        rol: '',
+        id_profesor: ''
     });
 
 

@@ -1,9 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import { useUsuariosStore } from '../stores/usuarios';
+import { useProfesoresStore } from '../stores/profesores';
 
 const usuariosStore = useUsuariosStore();
-
+const profesoresStore = useProfesoresStore();
 
 defineProps({
     title: {
@@ -47,6 +48,18 @@ defineProps({
                         <select class="form-select" aria-label="Default select example" v-model="usuariosStore.user.rol">
                             <option selected>Roles disponibles</option>
                             <option v-for="rol in usuariosStore.roles" :key="rol.id" :value="rol.id">{{ rol.nombre }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- select rol -->
+
+                    <div class="mb-3">
+                        <label for="profesor" class="form-label">Vincular usuario a Profesor: </label>
+                        <select class="form-select" aria-label="Default select example" v-model="usuariosStore.user.id_profesor">
+                            <option selected>Profesores disponibles</option>
+                            <option v-for="profesor in profesoresStore.profComputed" :key="profesor.id"
+                                :value="profesor.id">{{ profesor.nombreyapellido }}
                             </option>
                         </select>
                     </div>
