@@ -39,7 +39,7 @@ const columns = [
                     Agregar Usuario
                 </a>
             </div>
-            <div class="card-body">
+            <div class="card-body shadow p-3 mb-5 bg-body rounded">
 
                 <!-- <div class="table-responsive">
                     <table class="table">
@@ -70,7 +70,7 @@ const columns = [
                         </tbody>
                     </table>
                 </div> -->
-                <DataTable :columns="columns" :title="title" :usuarios="usuariosStore.users"/>
+                <DataTable class="" :columns="columns" :title="title" :usuarios="usuariosStore.users"/>
             </div>
         </div>
         <!-- agegando componente usuario -->

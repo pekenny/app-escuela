@@ -26,7 +26,7 @@ const title = ref('Licencia');
             </div>
             <div class="card-body">
 
-                <div class="table-responsive">
+                <div class=" p-3 table-responsive">
                     <table class="table">
                         <thead>
                             <tr>

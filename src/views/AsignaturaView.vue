@@ -36,7 +36,7 @@ const columns = [
             <div class="card-header">                
                 <router-link class="btn btn-primary m-1" to="/agregarAsignatura" @click="asignView = !asignView"> Agregar Asignatura</router-link>
             </div>
-            <div class="card-body">
+            <div class="card-body shadow p-3 mb-5 bg-body rounded">
 
              
                 <DataTable :asignaturas="asignaturaStore.asigCarrera" :title="title" :columns="columns" />
@@ -45,7 +45,7 @@ const columns = [
         </div>
         <!-- componente asignatura -->
         
-        <RouterView  v-if="asignView"/>
+        <RouterView class="p-3"  v-if="asignView"/>
     </div>
 </template>
 
