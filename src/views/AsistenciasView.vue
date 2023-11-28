@@ -1,20 +1,24 @@
 <script setup>
 import { useProfesoresStore } from '../stores/profesores';
 import { useAsistenciasStore } from '../stores/asistencias';
+import { useAsignaturasStore } from '../stores/asignaturas';
+
 import DataTable from '../components/DataTable.vue';
+import moment from 'moment';
 import { ref } from 'vue';
 
+const asignaturaStore = useAsignaturasStore();
 const asistenciaStore = useAsistenciasStore();
-
 const profesorStore = useProfesoresStore();
 
 const title = ref('Asistencia');
+
 
 const columns = [
     { data: 'profesor', title: 'Profesor' },
     { data: 'fecha', title: 'Fecha' },
     { data: 'asistencia', title: 'Asistencia' }
-    
+
 ]
 
 const userLogeado = JSON.parse(localStorage.getItem('data'));
@@ -30,28 +34,47 @@ const userLogeado = JSON.parse(localStorage.getItem('data'));
                     <form class="shadow p-3 mb-5 bg-body rounded" @submit.prevent="asistenciaStore.addAsistencia()">
                         <div class="mb-3">
                             <label for="prof" class="form-label">Profesor</label>
-                            <select class="form-select" aria-label="Default select example" id="prof" v-model="asistenciaStore.asistencias.profesor">
+
+                            <select v-if="userLogeado.user[0].id_permisos === 1" class="form-select"
+                                aria-label="Default select example" id="prof"
+                                v-model="asistenciaStore.asistencias.profesor">
                                 <option selected>Seleccione una opción</option>
                                 <option v-for="profesor in profesorStore.profComputed" :key="profesor.id"
                                     :value="profesor.id">{{ profesor.nombreyapellido }}</option>
 
                             </select>
+                            <input v-if="userLogeado.user[0].id_permisos === 2" type="hidden" class="form-control" id="prof"
+                                :value="asistenciaStore.asistencias.profesor = userLogeado.user[0].id" readonly>
+                        </div>
+                        <!-- asignaturas -->
+                        <div class="mb-3">
+                            <label for="asignatura" class="form-label">Asignatura</label>
+                            <select class="form-select" aria-label="Default select example" id="asignatura"
+                                v-model="asistenciaStore.asistencias.asignatura">
+                                <option selected>Seleccione una asignatura</option>
+                                <option v-for="asignatura in asignaturaStore.listAsignatura" :key="asignatura.id"
+                                    :value="asignatura.id">{{ asignatura.nombre }}</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="fecha" class="form-label">Fecha</label>
-                            <input type="date" class="form-control" id="fecha" v-model="asistenciaStore.asistencias.fecha">
+                            <!-- <input type="date" class="form-control" id="fecha" v-model="asistenciaStore.asistencias.fecha"> -->
+                            <input type="text" class="form-control" id="fecha"
+                                :value="asistenciaStore.asistencias.fecha = moment().format('YYYY-MM-DD HH:mm:ss')">
                         </div>
                         <div class="mb-3">
                             <label for="Estado" class="form-label">Estado</label>
-                           <select class="form-select" aria-label="Default select example" id="Estado" v-model="asistenciaStore.asistencias.estado">
+                            <select class="form-select" aria-label="Default select example" id="Estado"
+                                v-model="asistenciaStore.asistencias.estado">
                                 <option selected>Seleccione una opción</option>
                                 <option value="presente">Presente</option>
                                 <option value="ausente">Ausente</option>
                                 <option value="justificado">Justificado</option>
-                           </select>
+                            </select>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-success">Guardar</button>
+
                         <!-- Otros elementos del formulario -->
                     </form>
                 </div>
@@ -61,8 +84,7 @@ const userLogeado = JSON.parse(localStorage.getItem('data'));
                 </div>
             </div>
         </div>
-    </div>
-</template>
+</div></template>
 
 
 <style scoped></style>
