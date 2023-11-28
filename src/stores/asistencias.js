@@ -9,6 +9,8 @@ export const useAsistenciasStore = defineStore("asistencias", () => {
     profesor: "",
     fecha: "",
     estado: "",
+    asignatura: ""
+
   });
 
   // Obtener las asistencias

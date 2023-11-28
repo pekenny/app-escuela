@@ -23,13 +23,13 @@ const asignaturaStore = useAsignaturasStore();
                 <div class="mb-3">
                     <label for="asignatura" class="form-label">Nombre: </label>
                     <input type="text" class="form-control" name="asignatura" id="asignatura" aria-describedby="helpId"
-                        placeholder="asignatura" v-model="asignaturaStore.asignatura.nameAsignatura">
+                        placeholder="asignatura" v-model="asignaturaStore.asignatura.nombre">
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="cantHoras" class="form-label">Cant. Horas</label>
                     <input type="number" class="form-control" name="cantHoras" id="cantHoras" aria-describedby="helpId"
                             placeholder="Escriba su Telefono" v-model="asignaturaStore.asignatura.cantHoras">
-                    </div>
+                    </div> -->
                     <!-- <div class="mb-3">
                             <label for="carrera" class="form-label">Carrera: </label>
                             <input type="text" class="form-control" name="carrera" id="carrera" aria-describedby="helpId"
