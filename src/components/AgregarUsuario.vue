@@ -21,8 +21,7 @@ defineProps({
             </div>
             <div class="card-body">
 
-                <form action="" method="post"
-                    @submit.prevent="usuariosStore.addUsuario()">
+                <form action="" method="post" @submit.prevent="usuariosStore.addUsuario()">
 
                     <div class="mb-3">
                         <label for="usuario" class="form-label">Nombre: </label>
@@ -56,11 +55,12 @@ defineProps({
 
                     <div class="mb-3">
                         <label for="profesor" class="form-label">Vincular usuario a Profesor: </label>
-                        <select class="form-select" aria-label="Default select example" v-model="usuariosStore.user.id_profesor">
+                        <select class="form-select" aria-label="Default select example"
+                            v-model="usuariosStore.user.id_profesor">
                             <option selected>Profesores disponibles</option>
-                            <option v-for="profesor in profesoresStore.profComputed" :key="profesor.id"
-                                :value="profesor.id">{{ profesor.nombreyapellido }}
-                            </option>
+                            <option v-for="profesor in profesoresStore.profComputed" :key="profesor.id" :value="profesor.id"
+                                :disabled="profesor.id_profesor !== null">{{ profesor.id_profesor !== null ?
+                                    profesor.nombreyapellido + ' - Vinculado' : profesor.nombreyapellido }}</option>
                         </select>
                     </div>
 
