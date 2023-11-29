@@ -8,7 +8,8 @@ export const useAsistenciasStore = defineStore("asistencias", () => {
   const asistencias = reactive({
     profesor: "",
     fecha: "",
-    estado: ""
+    estado: "",
+    asignatura: ""
 
   });
 

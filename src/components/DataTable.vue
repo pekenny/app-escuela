@@ -68,7 +68,7 @@ onMounted(() => {
         <table :id="title" class="table table-hover table-striped" width="100%">
             <thead>
                 <tr>
-                    <th v-for="column in columns" :key="column">{{ column.data }}</th>
+                    <th class="text-center p-3 bg-dark text-white bg-gradient responsive" v-for="column in columns" :key="column">{{ column.data }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -95,9 +95,9 @@ onMounted(() => {
                 <!-- Asistencias -->
                 <tr v-for="asistencia in asistencias" :key="asistencia" v-else-if="title == 'Asistencia'">
                     <td>{{ asistencia.nombreyapellido }}</td>
-                    <td>{{ moment(asistencia.fechadeasistencia).format('DD/MM/YYYY') }}</td>
+                    <td>{{ moment(asistencia.fecha).format('DD/MM/YYYY HH:mm:ss') }}</td>
                     <td
-                        :class="asistencia.estado == 'ausente' ? 'bg-danger p-2 text-white bg-opacity-75' :
+                        :class="asistencia.estado == 'salida' ? 'bg-danger p-2 text-white bg-opacity-75' :
                             asistencia.estado == 'justificado' ? 'bg-warning p-2 text-white bg-opacity-75' : 'bg-success p-2 text-white bg-opacity-75'">
                         {{ asistencia.estado }}</td>
                 </tr>
@@ -105,7 +105,7 @@ onMounted(() => {
                 <tr v-for="asignatura in asignaturas" :key="asignatura" v-else-if="title == 'Asignatura'">
                     <td>{{ asignatura.id }}</td>
                     <td>{{ asignatura.nombreAsignatura }}</td>
-                    <td>{{ asignatura.cantHoras }}</td>
+                    <td>{{ asignatura.cantidad_horas }}</td>
                     <td>{{ asignatura.nombreCarrera }}</td>
                     <td>{{ asignatura.nombreyapellido }}</td>
                     <td><button class="btn btn-sm btn-success"
