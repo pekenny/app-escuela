@@ -12,7 +12,7 @@ const asistenciaStore = useAsistenciasStore();
 const profesorStore = useProfesoresStore();
 
 const title = ref('Asistencia');
-const bandera = ref(false);
+
 
 
 const columns = [
@@ -29,7 +29,8 @@ const userLogeado = JSON.parse(localStorage.getItem('data'));
     <div>
         <div class="container">
             <div class="row">
-                <div v-if="userLogeado.user[0].id_permisos === 2" :class="userLogeado.user[0].id_permisos === 1 ? 'col-6' : 'col-12'">
+                <div v-if="userLogeado.user[0].id_permisos === 2"
+                    :class="userLogeado.user[0].id_permisos === 1 ? 'col-6' : 'col-12'">
                     <h1 class="text-center card-title p-3 bg-primary text-white bg-gradient">Formulario de Asistencia</h1>
                     <!-- Formulario -->
                     <form class="shadow p-3 mb-5 bg-body rounded" @submit.prevent="asistenciaStore.addAsistencia()">
@@ -70,14 +71,16 @@ const userLogeado = JSON.parse(localStorage.getItem('data'));
                             <select class="form-select" aria-label="Default select example" id="Estado"
                                 v-model="asistenciaStore.asistencias.estado">
                                 <option selected>Seleccione una opción</option>
-                                <option v-if="!bandera" value="entrada">Entrada</option>
+                                <option v-if="!asistenciaStore.statusAsistencia" value="entrada">Entrada</option>
                                 <option v-else value="salida">Salida</option>
                                 <!-- <option value="justificado">Justificado</option> -->
                             </select>
                         </div>
 
-                        <button :class="!bandera ? 'btn btn-success' : 'btn btn-danger'" type="submit"
-                            class="btn btn-success" @click="bandera = !bandera">{{ !bandera ? 'Registrar Entrada' : 'Registrar Salida'
+                        <button :class="!asistenciaStore.statusAsistencia ? 'btn btn-success' : 'btn btn-danger'" type="submit"
+                            class="btn btn-success"
+                            @click="$event => asistenciaStore.statusAsistencia = !asistenciaStore.statusAsistencia">{{
+                                !asistenciaStore.statusAsistencia ? 'Registrar Entrada' : 'Registrar Salida'
                             }}</button>
 
                         <!-- Otros elementos del formulario -->
