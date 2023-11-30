@@ -5,6 +5,7 @@ import { ref, reactive, onMounted, watch, computed } from "vue";
 
 export const useAsistenciasStore = defineStore("asistencias", () => {
   const asistenciaProfesor = ref([]);
+  const statusAsistencia = ref(false);
   const asistencias = reactive({
     profesor: "",
     fecha: "",
@@ -69,5 +70,6 @@ export const useAsistenciasStore = defineStore("asistencias", () => {
     asistenciaP,
     asistencias,
     addAsistencia,
+    statusAsistencia
   };
 });
