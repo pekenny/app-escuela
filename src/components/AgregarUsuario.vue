@@ -61,6 +61,7 @@ defineProps({
                             <option v-for="profesor in profesoresStore.profComputed" :key="profesor.id" :value="profesor.id"
                                 :disabled="profesor.id_profesor !== null">{{ profesor.id_profesor !== null ?
                                     profesor.nombreyapellido + ' - Vinculado' : profesor.nombreyapellido }}</option>
+                                    
                         </select>
                     </div>
 
