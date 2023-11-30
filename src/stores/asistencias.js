@@ -5,10 +5,12 @@ import { ref, reactive, onMounted, watch, computed } from "vue";
 
 export const useAsistenciasStore = defineStore("asistencias", () => {
   const asistenciaProfesor = ref([]);
+  const statusAsistencia = ref(false);
   const asistencias = reactive({
     profesor: "",
     fecha: "",
-    estado: ""
+    estado: "",
+    asignatura: ""
 
   });
 
@@ -20,6 +22,9 @@ export const useAsistenciasStore = defineStore("asistencias", () => {
 
  onMounted(async () => {
    await getAsistencia();
+   if(!localStorage.getItem("asistencia_status")){
+     localStorage.setItem("asistencia_status", false);
+   }
  })
 
   // Agregar Asistencia
@@ -51,10 +56,11 @@ export const useAsistenciasStore = defineStore("asistencias", () => {
   };
 
   watch(
-    asistenciaProfesor,
+    [asistenciaProfesor, statusAsistencia],
     () => {
       getAsistencia;
-      console.log(asistenciaProfesor);
+      // console.log(asistenciaProfesor);
+      localStorage.setItem("asistencia_status", statusAsistencia.value);
     },
     { inmediate: true }
   );
@@ -68,5 +74,6 @@ export const useAsistenciasStore = defineStore("asistencias", () => {
     asistenciaP,
     asistencias,
     addAsistencia,
+    statusAsistencia
   };
 });

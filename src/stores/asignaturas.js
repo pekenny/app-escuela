@@ -8,8 +8,8 @@ export const useAsignaturasStore = defineStore("asignaturas", () => {
   const dataList = ref([]);
   const asigCarrera = ref([]);
   const asignatura = reactive({
-    nameAsignatura: "",
-    cantHoras: "",
+    nombre: ""
+    // cantHoras: "",
   });
 
   const getAsignaturas = async () => {
@@ -31,7 +31,7 @@ export const useAsignaturasStore = defineStore("asignaturas", () => {
     try {
       const request = await axios.post(
         "http://localhost:3000/api/asignaturas",
-        asignatura.value,
+        asignatura,
         {
           headers: {
             "Content-Type": "application/json",
