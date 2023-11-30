@@ -22,6 +22,9 @@ export const useAsistenciasStore = defineStore("asistencias", () => {
 
  onMounted(async () => {
    await getAsistencia();
+   if(!localStorage.getItem("asistencia_status")){
+     localStorage.setItem("asistencia_status", false);
+   }
  })
 
   // Agregar Asistencia
@@ -53,10 +56,11 @@ export const useAsistenciasStore = defineStore("asistencias", () => {
   };
 
   watch(
-    asistenciaProfesor,
+    [asistenciaProfesor, statusAsistencia],
     () => {
       getAsistencia;
-      console.log(asistenciaProfesor);
+      // console.log(asistenciaProfesor);
+      localStorage.setItem("asistencia_status", statusAsistencia.value);
     },
     { inmediate: true }
   );
