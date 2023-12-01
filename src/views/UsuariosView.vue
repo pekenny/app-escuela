@@ -41,7 +41,7 @@ const columns = [
             </div>
 
         </div>
-        <div class="">
+        <div class="" v-if="!userView">
 
             <DataTable class="shadow p-3 mb-5 bg-body rounded" :columns="columns" :title="title" :usuarios="usuariosStore.users" />
         </div>

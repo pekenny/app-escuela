@@ -8,13 +8,15 @@ defineProps({
     }
 })
 
+const title = ref('Asignatura');
+
 const asignaturaStore = useAsignaturasStore();
 </script>
 <template>
     <div>
         <div class="shadow p-3 mb-5 bg-body rounded">
-            <div class="card-header">
-                {{ title }}
+            <div class="card-header border">
+                <h5 class="card-title text-center bg-warning p-3 text-white">Formulario para agregar {{ title }}</h5>
             </div>
             <div class="card-body">
 

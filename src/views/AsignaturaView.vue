@@ -36,17 +36,17 @@ const columns = [
             <div class="card-header shadow p-3 mb-5 bg-body rounded">                
                 <router-link class="btn btn-primary m-1" to="/agregarAsignatura" @click="asignView = !asignView"> Agregar Asignatura</router-link>
             </div>
-            <div class="card-body shadow p-3 mb-5 bg-body rounded">
+            <div class="card-body shadow p-3 mb-5 bg-body rounded" v-if="!asignView">
 
              
                 <DataTable :asignaturas="asignaturaStore.asigCarrera" :title="title" :columns="columns" />
             </div>
 
         </div>
-        <!-- componente asignatura -->
+        <!-- componente asignatura -->        
         
-        <RouterView class="p-3"  v-if="asignView"/>
     </div>
+    <RouterView class="p-3"  v-if="asignView"/>
 </template>
 
 
