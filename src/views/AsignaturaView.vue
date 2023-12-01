@@ -33,7 +33,7 @@ const columns = [
 
         </div>
         <div class="">
-            <div class="card-header">                
+            <div class="card-header shadow p-3 mb-5 bg-body rounded">                
                 <router-link class="btn btn-primary m-1" to="/agregarAsignatura" @click="asignView = !asignView"> Agregar Asignatura</router-link>
             </div>
             <div class="card-body shadow p-3 mb-5 bg-body rounded">

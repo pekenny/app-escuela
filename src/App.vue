@@ -1,7 +1,7 @@
 <script setup>
 
-import Header from './components/Header.vue'
-import LoginView from './views/LoginView.vue'
+import Header from './components/Header.vue';
+import LoginView from './views/LoginView.vue';
 
 import { useUserStore } from './stores/user';
 import { RouterView } from 'vue-router'
@@ -17,16 +17,15 @@ const userStore = useUserStore();
     <Header></Header>
     
     <main class="container p-3">
-      <router-view style="background-color: #eaeef4;" class=""></router-view>
+      <router-view  class=""></router-view>
     </main>
   </div>
 </template>
 
-<style scoped>
-  * {
+<style >
+  body {
     font-size: small;
-  }
-  .container {
     background-color: #eaeef4;
   }
+
 </style>
